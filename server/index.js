@@ -3,6 +3,8 @@ import connectDB from "./db/index.js";
 import testRouter from "./routes/user.route.js";
 import authRouter from "./routes/auth.controller.js";
 import dotenv from "dotenv";
+import createError from "http-errors";
+
 dotenv.config();
 
 const app = express();
