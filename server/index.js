@@ -6,13 +6,12 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const app = express();
-
-connectDB();
+app.use(express.json());
 
 app.use("/test", testRouter);
 app.use("/api/auth", authRouter);
 
-app.use(express.json());
+connectDB();
 app.listen(process.env.PORT || 3000, () => {
   console.log(`Server listening to http://localhost:3000`);
 });
