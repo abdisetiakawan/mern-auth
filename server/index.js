@@ -33,13 +33,11 @@ app.use(function (req, res, next) {
 
 // error handler
 app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
-
-  // send the error response
-  res.status(err.status || 500).send({
-    message: err.message,
-    error: req.app.get("env") === "development" ? err : {},
+  const statusCode = err.status || 500;
+  const message = err.message || "Internal Server Error";
+  return res.status(statusCode).json({
+    success: false,
+    error: message,
+    statusCode: statusCode,
   });
 });
